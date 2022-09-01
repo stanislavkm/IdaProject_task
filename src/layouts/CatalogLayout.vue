@@ -1,6 +1,6 @@
 <template>
-<div class="catalog">
-    <h2>Каталог товаров</h2>
+<div class="catalog" :class="[MOBILE_VALUE ? 'full_catalog' :'']">
+<!--    <h2>Каталог товаров</h2> -->
     <div class="catalog_wrapper">
         <ToDoItem></ToDoItem>
         <ToDoItem></ToDoItem>
@@ -12,9 +12,15 @@
 
 <script>
 import ToDoItem from '../components/Item'
+import {mapGetters} from "vuex"
 export default{
     name: "CatalogLayout",
     components: {ToDoItem},
+    computed:{
+    ...mapGetters([
+      'MOBILE_VALUE',
+    ])         
+    }
 }
 </script>
 
@@ -22,14 +28,18 @@ export default{
 .catalog{
     padding: 0px 0 0 380px;
     background:#E5E5E5;
-    height: 100vh;
+}
+.full_catalog{
+    padding: 0;
+    transition: all 1s ease-in;    
 }
 .catalog_wrapper{
     height: 100%;
     width: 100%;
+    padding: 60px 20px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 60px;
+    column-gap: 30px;
     row-gap: 10px;
     justify-content: center; 
 }
