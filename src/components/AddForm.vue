@@ -1,28 +1,56 @@
 <template>
-    <form class="addForm" @submit.prevent="">
+    <Form class="addForm" @submit.prevent="">
         <div class="addForm_item">
             <label class="addForm_label" for="product_name">Наименование товара</label>
-            <input class="addForm_input" type="text" placeholder="Введите наименование товара" id="product_name">
+            <Field class="addForm_input" v-model="productName" type="text" name="product_name" placeholder="Введите наименование товара" id="product_name" :rules="[isRequired]"/>
         </div>
+            <ErrorMessage class="errMessage" name="product_name"/>
         <div class="addForm_item">
             <label class="addForm_label" for="product_description">Описание товара</label>
-            <textarea class="addForm_input addForm_textarea" type="text" placeholder="Введите описание товара" id="product_description"></textarea>
+            <textarea class="addForm_input addForm_textarea" v-model="productDesc" type="text" placeholder="Введите описание товара" id="product_description"></textarea>
         </div>
         <div class="addForm_item">
             <label class="addForm_label" for="product_url">Ссылка на изображение товара</label>
-            <input class="addForm_input" type="text" placeholder="Введите ссылку" id="product_url">
+            <Field class="addForm_input" type="text" v-model="productUrl" name="product_url" placeholder="Введите ссылку" id="product_url" :rules="[isRequired]"/>
         </div> 
+            <ErrorMessage class="errMessage" name="product_url"/>
         <div class="addForm_item">
             <label class="addForm_label" for="product_price">Цена товара</label>
-            <input class="addForm_input" type="text" placeholder="Введите цену" id="product_price">
-        </div>     
-        <button class="add_btn">Добавить товар</button>                   
+            <Field class="addForm_input" type="text" v-model="productPrice" name="product_price" placeholder="Введите цену" id="product_price" :rules="[isRequired]"/>
+        </div>   
+            <ErrorMessage class="errMessage" name="product_price"/>  
+        <button class="add_btn" @click="clickme()" :disabled=!productName||!productPrice||!productUrl>Добавить товар</button>                   
     </form>  
 </template>
 
 <script>
+import { Form, Field, ErrorMessage } from 'vee-validate';
 export default {
-    name: 'AddForm' 
+  name: 'AddForm',
+  data (){
+    return {
+        productName: '',
+        productDesc: '',
+        productUrl: '',
+        productPrice: '',
+    }
+  },
+  components: {
+    Form,
+    Field,
+    ErrorMessage,
+  },    
+  methods: {
+    clickme(){
+        alert('Нажали')
+    },
+    isRequired(value) {
+      if (value && value.trim()) {
+        return true;
+      }
+      return 'Поле является обязательным';
+    },    
+  }
 }
 </script>
 
@@ -37,7 +65,7 @@ export default {
 }
 .addForm_item{
     width: 100%;
-    margin-bottom: 16px;
+    margin: 14px 0 6px;
 }
 .addForm_label{
     margin-bottom: 6px;
@@ -60,32 +88,44 @@ export default {
     font-weight: 400;
     font-size: 0.9rem;
     line-height: 15px;
-    color: #B4B4B4;
+    color: #3F3F3F;
 }
 .addForm_input:focus {
     outline: none !important;
-    border:2px solid rgba(228, 104, 104, 0.3);
-    box-shadow: 0 0 10px rgba(228, 104, 104, 0.3);
+    border:1px solid rgba(123, 174, 115, 0.3);
+    box-shadow: 0 0 10px rgba(123, 174, 115, 0.2);
 }
 .addForm_textarea{
     display: block;
     height: 108px;
 }
 .add_btn{
+    margin-top: 10px;
     font-size: 0.9rem;
-    background: #EEEEEE;
+    background: #7BAE73;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    color:#B4B4B4;
+    color:#FFFFFF;
     border: none;
     width: 100%;
     padding: 12px 0;
 }
 .add_btn:hover{
-    font-size: 1rem;
-    color: #FF8484;
-    transform: scale(1.02);
-    border:1px solid rgba(228, 104, 104, 0.5);
-    box-shadow: 0 5px 17px 0 rgba(205, 212, 200, 0.6);
+    font-size: 0.95rem;
+    color: #FFFFFF;
+    transform: scale(1.01);
+    border:1px solid #FFFFFF;
+    box-shadow: 0 5px 17px 0 #FFFFFF;
     transition: 0.1s ease-in;
+}
+.add_btn:disabled,
+.add_btn[disabled]{
+  border: none;
+  background-color: #EEEEEE;
+  color: #B4B4B4;
+}
+.errMessage{
+    font-size: 0.8rem;
+    color:rgba(194, 16, 16, 0.9)
 }
 </style>

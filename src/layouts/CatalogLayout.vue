@@ -2,20 +2,20 @@
 <div class="catalog" :class="[MOBILE_VALUE ? 'full_catalog' :'']">
 <!--    <h2>Каталог товаров</h2> -->
     <div class="catalog_wrapper">
-        <ToDoItem></ToDoItem>
-        <ToDoItem></ToDoItem>
-        <ToDoItem></ToDoItem>
-        <ToDoItem></ToDoItem>        
+        <CatalogItem></CatalogItem>
+        <CatalogItem></CatalogItem>
+        <CatalogItem></CatalogItem>
+        <CatalogItem></CatalogItem>        
     </div>
 </div>
 </template>
 
 <script>
-import ToDoItem from '../components/Item'
+import CatalogItem from '../components/Item'
 import {mapGetters} from "vuex"
 export default{
     name: "CatalogLayout",
-    components: {ToDoItem},
+    components: {CatalogItem},
     computed:{
     ...mapGetters([
       'MOBILE_VALUE',

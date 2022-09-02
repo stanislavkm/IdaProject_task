@@ -16,7 +16,7 @@
 <script>
 
 export default {
-  name: 'ToDoItem',
+  name: 'CatalogItem',
 }
 </script>
 
@@ -32,7 +32,7 @@ export default {
 }
 .item:hover{
     transform: scale(1.03);
-    box-shadow: 0 5px 17px 0 rgba(228, 104, 104, 0.3);
+    box-shadow: 0 5px 17px 0 rgba(123, 174, 115, 0.4);
     transition: 0.1s ease-in;
 }
 .item_img{
