@@ -2,23 +2,6 @@ html {
     scroll-behavior: smooth;
     height: 100%;
 }
-.modal-fade-enter-active {
-    transform: translateY(0);
-    transition: all 0.5s ease-in;
-}
-
-.modal-fade-leave-active {
-    transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.modal-fade-enter-from{
-    transform: translateX(100vh);
-    opacity: 1;
-}
-.modal-fade-leave-to {
-    transform: translateX(100vh);
-    opacity: 1;
-}
 body::-webkit-scrollbar{
     width: 14px;
 }
@@ -26,7 +9,7 @@ body::-webkit-scrollbar-thumb{
     border-radius: 4px;
     height: 150px;
     box-shadow: inset 1px 1px 1px #fcfcfc;
-    background-color:rgba(228, 104, 104, 0.4);
+    background-color:rgba(123, 174, 115, 0.4);
 }
 body::-webkit-scrollbar-track{
     border: 1px solid whitesmoke;
@@ -163,7 +146,7 @@ body{
         transform: rotate(45deg) translate(0px, 50%);
     }
     .menu_toggle._active{
-        transform: translateX(120px);
+        transform: translateX(115px);
     }
 }
 

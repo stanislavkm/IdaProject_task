@@ -19,7 +19,7 @@
             <Field class="addForm_input" type="text" v-model="productPrice" name="product_price" placeholder="Введите цену" id="product_price" :rules="[isRequired]"/>
         </div>   
             <ErrorMessage class="errMessage" name="product_price"/>  
-        <button class="add_btn" @click="clickme()" :disabled=!productName||!productPrice||!productUrl>Добавить товар</button>                   
+        <button class="add_btn" @click="addItem" :disabled=!productName||!productPrice||!productUrl>Добавить товар</button>                   
     </form>  
 </template>
 
@@ -41,8 +41,9 @@ export default {
     ErrorMessage,
   },    
   methods: {
-    clickme(){
-        alert('Нажали')
+    addItem(){
+        let item ={name: this.productName, description: this.productDesc, url: this.productUrl, price: this.productPrice}
+        this.$store.dispatch('ADD_TO_ITEMS', item)
     },
     isRequired(value) {
       if (value && value.trim()) {

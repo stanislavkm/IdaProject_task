@@ -2,25 +2,41 @@
 <div class="catalog" :class="[MOBILE_VALUE ? 'full_catalog' :'']">
 <!--    <h2>Каталог товаров</h2> -->
     <div class="catalog_wrapper">
-        <CatalogItem></CatalogItem>
-        <CatalogItem></CatalogItem>
-        <CatalogItem></CatalogItem>
-        <CatalogItem></CatalogItem>        
+        <CatalogItem 
+            v-for="item in this.$store.state.items" 
+            :key="item.index"
+            :item_data="item"
+            >
+        </CatalogItem>
+        <!-- </CatalogItem> -->
+        <!-- <CatalogItem/> -->
+        <!-- <CatalogItem/> -->
+        <!-- <CatalogItem/> -->
+        
+       
     </div>
 </div>
 </template>
 
 <script>
 import CatalogItem from '../components/Item'
-import {mapGetters} from "vuex"
+import {mapActions, mapGetters} from "vuex"
 export default{
     name: "CatalogLayout",
     components: {CatalogItem},
+    methods:{
+    ...mapActions([
+      'GET_ITEMS_FROM_API',
+    ])          
+    },
     computed:{
     ...mapGetters([
       'MOBILE_VALUE',
     ])         
-    }
+    },
+    mounted(){
+        this.GET_ITEMS_FROM_API()
+    },
 }
 </script>
 
